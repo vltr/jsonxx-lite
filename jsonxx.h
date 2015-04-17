@@ -32,8 +32,12 @@
 #define JSONXX_COMPILER_HAS_CXX11 0
 #endif
 
+#if DEBUG
 #define JSONXX_ASSERT(...) do { if( jsonxx::Assertions ) \
-  jsonxx::assertion(__FILE__,__LINE__,#__VA_ARGS__,bool(__VA_ARGS__)); } while(0)
+jsonxx::assertion(__FILE__,__LINE__,#__VA_ARGS__,bool(__VA_ARGS__)); } while(0)
+#else
+#define JSONXX_ASSERT(...)
+#endif
 
 namespace jsonxx {
 
