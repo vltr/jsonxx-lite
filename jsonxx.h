@@ -33,8 +33,7 @@
 #endif
 
 #if DEBUG
-#define JSONXX_ASSERT(...) do { if( jsonxx::Assertions ) \
-jsonxx::assertion(__FILE__,__LINE__,#__VA_ARGS__,bool(__VA_ARGS__)); } while(0)
+#define JSONXX_ASSERT //
 #else
 #define JSONXX_ASSERT(...)
 #endif
@@ -383,7 +382,7 @@ number_value_ = static_cast<long double>(n); \
     const T& Object::get(const std::string& key, const typename identity<T>::type& default_value) const {
         auto iterator = value_map_.find(key);
         if (iterator != value_map_.end() && iterator->second->is<T>()) {
-            return value_map_.find(key)->second->get<T>();
+            return iterator->second->get<T>();
         } else {
             return default_value;
         }
